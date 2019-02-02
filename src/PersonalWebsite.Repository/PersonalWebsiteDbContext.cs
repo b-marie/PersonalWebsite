@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using PersonalWebsite.Repository.Models;
 
 namespace PersonalWebsite.Repository
@@ -11,6 +8,7 @@ namespace PersonalWebsite.Repository
     public class PersonalWebsiteDbContext : DbContext
     {
         internal DbSet<About> About { get; set; }
+        internal DbSet<Admin> Admin { get; set; }
         internal DbSet<Book> Books { get; set; }
         internal DbSet<CommunityInvolvement> CommunityInvolvement { get; set; }
         internal DbSet<Employment> Employment { get; set; }

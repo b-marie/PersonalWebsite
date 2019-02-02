@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebsite.Repository;
 
 namespace PersonalWebsite.Repository.Migrations
 {
     [DbContext(typeof(PersonalWebsiteDbContext))]
-    partial class PersonalWebsiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190202220237_AllowPublishedToBeNull")]
+    partial class AllowPublishedToBeNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
