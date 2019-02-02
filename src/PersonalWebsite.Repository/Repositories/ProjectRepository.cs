@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
@@ -10,13 +11,21 @@ namespace PersonalWebsite.Repository.Repositories
     public class ProjectRepository
     {
         private readonly PersonalWebsiteDbContext _context;
-        public ProjectRepository(PersonalWebsiteDbContext context)
+        private readonly AdminRepository _adminRepository;
+        public ProjectRepository(PersonalWebsiteDbContext context, AdminRepository adminRepository)
         {
             _context = context;
+            _adminRepository = adminRepository;
         }
         public async Task<List<Project>> GetAllProjects()
         {
             return await _context.Projects.OrderByDescending(x => x.CreatedAt).ToListAsync();
+        }
+
+        public async Task<List<Project>> GetProjectsBySkillId(Guid skillId)
+        {
+            ProjectSkills skill = await _adminRepository.GetProjectSkillById(skillId);
+            return await _context.Projects.Where(x => x.SkillsUsed.Contains(skill)).OrderByDescending(p => p.CreatedAt).ToListAsync();
         }
 
         public async Task<Project> GetProjectById(Guid id)

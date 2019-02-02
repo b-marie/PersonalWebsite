@@ -23,6 +23,10 @@ namespace PersonalWebsite.Repository
         internal DbSet<Project> Projects { get; set; }
         internal DbSet<Quote> Quotes { get; set; }
         internal DbSet<Skill> Skills { get; set; }
+        internal DbSet<ProjectSkills> ProjectSkills { get; set; }
+        internal DbSet<CommunityInvolvementSkills> CommunityInvolvementSkills { get; set; }
+        internal DbSet<EmploymentSkills> EmploymentSkills { get; set; }
+        internal DbSet<PostTag> PostTag { get; set; }
 
 
         public PersonalWebsiteDbContext(DbContextOptions options) : base(options)

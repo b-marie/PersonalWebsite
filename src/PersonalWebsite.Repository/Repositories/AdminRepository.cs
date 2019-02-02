@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace PersonalWebsite.Repository.Repositories
         public async Task<Skill> GetSkillById(Guid id)
         {
             return await _context.Skills.FindAsync(id);
+        }
+
+        public async Task<ProjectSkills> GetProjectSkillById(Guid id)
+        {
+            return await _context.ProjectSkills.Where(x => x.SkillId == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<Skill>> GetAllSkills()
