@@ -4,10 +4,10 @@ using System.Text;
 
 namespace PersonalWebsite.Repository.Models
 {
-    public class GoalCategory
+    public class Tag
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<Goal> Goals { get; set; }
+        public List<PostTag> PostTags { get; set; }
     }
 }

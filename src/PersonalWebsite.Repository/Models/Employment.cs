@@ -15,7 +15,6 @@ namespace PersonalWebsite.Repository.Models
         public string JobDescription { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        [ForeignKey("Skills")]
-        public virtual List<Guid> Skills { get; set; }
+        public virtual List<EmploymentSkills> Skills { get; set; }
     }
 }

@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols;
+using PersonalWebsite.Repository;
 
 namespace PersonalWebsite.API
 {
@@ -27,6 +30,8 @@ namespace PersonalWebsite.API
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            ConfigureEntityFramework(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +67,28 @@ namespace PersonalWebsite.API
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+        }
+
+        private void ConfigureEntityFramework(IServiceCollection services)
+        {
+            services.AddDbContext<PersonalWebsiteDbContext>(options => {
+                options.UseMySql(GetConnectionString());
+            });
+        }
+
+        private string GetConnectionString()
+        {
+            var appConfig = Configuration.GetSection("environmentVariables");
+            string dbname = appConfig["RDS_DB_NAME"];
+
+            if (string.IsNullOrEmpty(dbname)) return null;
+
+            string username = appConfig["RDS_USERNAME"];
+            string password = appConfig["RDS_PASSWORD"];
+            string hostname = appConfig["RDS_HOSTNAME"];
+            string port = appConfig["RDS_PORT"];
+
+            return "Data Source=" + hostname + ";Initial Catalog=" + dbname + ";User ID=" + username + ";Password=" + password + ";";
         }
     }
 }

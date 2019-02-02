@@ -12,7 +12,6 @@ namespace PersonalWebsite.Repository.Models
         public string Description { get; set; }
         public bool Active { get; set; }
         public DateTime? CompletedAt { get; set; }
-        [ForeignKey("GoalCategories")]
-        public Guid Category { get; set; }
+        public GoalCategory Category { get; set; }
     }
 }

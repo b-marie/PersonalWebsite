@@ -12,9 +12,7 @@ namespace PersonalWebsite.Repository.Models
         public string Title { get; set; }
         public string Body { get; set; }
         public string ImageLink { get; set; }
-        [ForeignKey("PostCategories")]
-        public Guid Category { get; set; }
-        [ForeignKey("PostTags")]
-        public virtual List<Guid> Tags { get; set; }
+        public PostCategory Category { get; set; }
+        public virtual List<PostTag> Tags { get; set; }
     }
 }
