@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.Repository.Repositories
 {
-    public class AdminRepository
+    public class AdminRepository : IAdminRepository
     {
         private readonly PersonalWebsiteDbContext _context;
         public AdminRepository(PersonalWebsiteDbContext context)
@@ -107,7 +108,6 @@ namespace PersonalWebsite.Repository.Repositories
             _context.Admin.Update(adminToUpdate);
             await _context.SaveChangesAsync();
             return adminToUpdate;
-
         }
     }
 }

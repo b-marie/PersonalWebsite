@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.Repository.Repositories
 {
-    public class BlogRepository
+    public class BlogRepository : IBlogRepository
     {
         private readonly PersonalWebsiteDbContext _context;
 

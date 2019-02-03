@@ -5,10 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.Repository.Repositories
 {
-    public class ProjectRepository
+    public class ProjectRepository : IProjectRepository
     {
         private readonly PersonalWebsiteDbContext _context;
         private readonly AdminRepository _adminRepository;
@@ -35,7 +36,6 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Project> AddProject(Project project)
         {
-            project.CreatedAt = DateTime.UtcNow;
             await _context.Projects.AddAsync(project);
             await _context.SaveChangesAsync();
             return project;
@@ -43,17 +43,17 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Project> UpdateProject(Project project)
         {
-            Project projectToUpdate = await GetProjectById(project.Id);
-            projectToUpdate.Title = project.Title;
-            projectToUpdate.Description = project.Description;
-            projectToUpdate.ImageUrl = project.ImageUrl;
-            projectToUpdate.ProjectUrl = project.ProjectUrl;
-            projectToUpdate.GitHubUrl = project.GitHubUrl;
-            projectToUpdate.SkillsUsed = project.SkillsUsed;
-            projectToUpdate.LastUpdatedAt = DateTime.UtcNow;
-            _context.Projects.Update(projectToUpdate);
+            _context.Projects.Update(project);
             await _context.SaveChangesAsync();
-            return projectToUpdate;
+            return project;
+        }
+
+        public async Task<Project> DeleteProjectById(Guid id)
+        {
+            Project project = await GetProjectById(id);
+            _context.Projects.Remove(project);
+            await _context.SaveChangesAsync();
+            return project;
         }
     }
 }

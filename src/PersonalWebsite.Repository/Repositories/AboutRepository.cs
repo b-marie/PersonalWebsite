@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.Repository.Repositories
 {
-    public class AboutRepository
+    public class AboutRepository : IAboutRepository
     {
         private readonly PersonalWebsiteDbContext _context;
         private readonly AdminRepository _adminRepository;
