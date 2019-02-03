@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebsite.Repository;
 
 namespace PersonalWebsite.Repository.Migrations
 {
     [DbContext(typeof(PersonalWebsiteDbContext))]
-    partial class PersonalWebsiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190202214722_AddPostSaving")]
+    partial class AddPostSaving
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,15 +240,13 @@ namespace PersonalWebsite.Repository.Migrations
 
                     b.Property<string>("ImageLink");
 
-                    b.Property<DateTime?>("LastSavedAt");
+                    b.Property<DateTime>("LastSavedAt");
 
                     b.Property<DateTime?>("LastUpdatedAt");
 
                     b.Property<Guid>("PostCategoryForeignKey");
 
-                    b.Property<bool>("Published");
-
-                    b.Property<DateTime?>("PublishedAt");
+                    b.Property<DateTime>("PublishedAt");
 
                     b.Property<string>("Title");
 

@@ -13,6 +13,8 @@ namespace PersonalWebsite.Repository.Models
         public string ImageUrl { get; set; }
         public string ProjectUrl { get; set; }
         public string GitHubUrl { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
         public virtual List<ProjectSkills> SkillsUsed { get; set; }
     }
 }
