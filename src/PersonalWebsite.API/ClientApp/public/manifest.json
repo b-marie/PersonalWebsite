@@ -1,6 +1,6 @@
 {
-  "short_name": "PersonalWebsite.API",
-  "name": "PersonalWebsite.API",
+  "short_name": "PersonalWebsite",
+  "name": "PersonalWebsite",
   "icons": [
     {
       "src": "favicon.ico",

@@ -5,10 +5,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 
 export default props => (
-  <Navbar inverse fixedTop fluid collapseOnSelect>
+  <Navbar fixedTop fluid collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to={'/'}>PersonalWebsite.API</Link>
+        <Link to={'/'}>PersonalWebsite</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -16,18 +16,23 @@ export default props => (
       <Nav>
         <LinkContainer to={'/'} exact>
           <NavItem>
-            <Glyphicon glyph='home' /> Home
+            Home
           </NavItem>
         </LinkContainer>
         <LinkContainer to={'/counter'}>
           <NavItem>
-            <Glyphicon glyph='education' /> Counter
+            Counter
           </NavItem>
         </LinkContainer>
         <LinkContainer to={'/fetchdata'}>
           <NavItem>
-            <Glyphicon glyph='th-list' /> Fetch data
+            Fetch data
           </NavItem>
+        </LinkContainer>
+        <LinkContainer to={'/admin'}>
+            <NavItem>
+                Admin
+            </NavItem>
         </LinkContainer>
       </Nav>
     </Navbar.Collapse>

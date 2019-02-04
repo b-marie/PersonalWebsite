@@ -12,8 +12,8 @@ namespace PersonalWebsite.Repository.Repositories
     public class ProjectRepository : IProjectRepository
     {
         private readonly PersonalWebsiteDbContext _context;
-        private readonly AdminRepository _adminRepository;
-        public ProjectRepository(PersonalWebsiteDbContext context, AdminRepository adminRepository)
+        private readonly IAdminRepository _adminRepository;
+        public ProjectRepository(PersonalWebsiteDbContext context, IAdminRepository adminRepository)
         {
             _context = context;
             _adminRepository = adminRepository;

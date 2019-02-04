@@ -35,5 +35,7 @@ namespace PersonalWebsite.Repository.Repositories.Interfaces
         Task<Admin> GetAdminById(Guid id);
 
         Task<Admin> UpdateAdmin(Admin admin);
+
+        Task<List<Admin>> GetAdmin();
     }
 }

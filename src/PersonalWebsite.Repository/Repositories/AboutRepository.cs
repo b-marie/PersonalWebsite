@@ -13,8 +13,8 @@ namespace PersonalWebsite.Repository.Repositories
     public class AboutRepository : IAboutRepository
     {
         private readonly PersonalWebsiteDbContext _context;
-        private readonly AdminRepository _adminRepository;
-        public AboutRepository(PersonalWebsiteDbContext context, AdminRepository adminRepository)
+        private readonly IAdminRepository _adminRepository;
+        public AboutRepository(PersonalWebsiteDbContext context, IAdminRepository adminRepository)
         {
             _context = context;
             _adminRepository = adminRepository;

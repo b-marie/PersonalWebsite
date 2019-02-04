@@ -9,7 +9,7 @@ using PersonalWebsite.Repository.Models;
 
 namespace PersonalWebsite.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/projects")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
