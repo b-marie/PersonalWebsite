@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
 using PersonalWebsite.Repository.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PersonalWebsite.Repository.Repositories
 {
@@ -52,12 +51,9 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<PostCategory> UpdatePostCategory(PostCategory category)
         {
-            PostCategory categoryToUpdate = await GetPostCategoryById(category.Id);
-            categoryToUpdate.Name = category.Name;
-            categoryToUpdate.Posts = category.Posts;
-            _context.PostCategories.Update(categoryToUpdate);
+            _context.PostCategories.Update(category);
             await _context.SaveChangesAsync();
-            return categoryToUpdate;
+            return category;
         }
 
         public async Task<PostCategory> DeletePostCategory(PostCategory category)
@@ -86,12 +82,9 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Tag> UpdateTag(Tag tag)
         {
-            Tag tagToUpdate = await GetTagById(tag.Id);
-            tagToUpdate.Name = tag.Name;
-            tagToUpdate.PostTags = tag.PostTags;
-            _context.Tags.Update(tagToUpdate);
+            _context.Tags.Update(tag);
             await _context.SaveChangesAsync();
-            return tagToUpdate;
+            return tag;
         }
 
         public async Task<Tag> DeleteTag(Tag tag)
@@ -103,7 +96,6 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Post> AddPost(Post post)
         {
-            post.CreatedAt = DateTime.UtcNow;
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync();
             return post;
@@ -111,34 +103,16 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Post> SavePost(Post post)
         {
-            Post postToSave = await GetPostById(post.Id);
-            postToSave.Title = post.Title;
-            postToSave.ImageLink = post.ImageLink;
-            postToSave.Body = post.Body;
-            postToSave.Category = post.Category;
-            postToSave.Tags = post.Tags;
-            postToSave.LastSavedAt = DateTime.UtcNow;
-            postToSave.LastUpdatedAt = DateTime.UtcNow;
-            _context.Posts.Update(postToSave);
+            _context.Posts.Update(post);
             await _context.SaveChangesAsync();
-            return postToSave;
+            return post;
         }
 
         public async Task<Post> PublishPost(Post post)
         {
-            Post postToPublish = await GetPostById(post.Id);
-            postToPublish.Title = post.Title;
-            postToPublish.ImageLink = post.ImageLink;
-            postToPublish.Body = post.Body;
-            postToPublish.Category = post.Category;
-            postToPublish.Tags = post.Tags;
-            postToPublish.LastSavedAt = DateTime.UtcNow;
-            postToPublish.PublishedAt = DateTime.UtcNow;
-            postToPublish.LastUpdatedAt = DateTime.UtcNow;
-            postToPublish.Published = true;
-            _context.Posts.Update(postToPublish);
+            _context.Posts.Update(post);
             await _context.SaveChangesAsync();
-            return postToPublish;
+            return post;
         }
 
         public async Task<Post> DeletePost(Post post)

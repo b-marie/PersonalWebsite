@@ -1,8 +1,7 @@
-﻿using System;
+﻿using PersonalWebsite.Repository.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using PersonalWebsite.Repository.Models;
 
 namespace PersonalWebsite.Logic.Services.Interfaces
 {

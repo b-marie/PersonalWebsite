@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using PersonalWebsite.Logic.Services.Interfaces;
+﻿using PersonalWebsite.Logic.Services.Interfaces;
 using PersonalWebsite.Repository.Models;
 using PersonalWebsite.Repository.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PersonalWebsite.Logic.Services
 {

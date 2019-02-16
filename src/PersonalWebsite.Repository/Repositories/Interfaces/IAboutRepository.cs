@@ -70,8 +70,6 @@ namespace PersonalWebsite.Repository.Repositories.Interfaces
 
         Task<List<Goal>> GetGoalsByCategoryId(Guid id);
 
-        Task<Goal> CompleteGoalById(Guid id);
-
         Task<List<Goal>> GetAllActiveGoals();
 
         Task<List<Goal>> GetAllCompletedGoals();
