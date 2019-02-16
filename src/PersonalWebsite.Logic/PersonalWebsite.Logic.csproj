@@ -8,8 +8,4 @@
     <ProjectReference Include="..\PersonalWebsite.Repository\PersonalWebsite.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
 </Project>

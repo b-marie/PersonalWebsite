@@ -7,7 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols;
+using PersonalWebsite.Logic.Services;
+using PersonalWebsite.Logic.Services.Interfaces;
 using PersonalWebsite.Repository;
+using PersonalWebsite.Repository.Repositories;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.API
 {
@@ -32,6 +36,14 @@ namespace PersonalWebsite.API
             });
 
             ConfigureEntityFramework(services);
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IAboutRepository, AboutRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IAboutService, AboutService>();
+            services.AddTransient<IBlogService, BlogService>();
+            services.AddTransient<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

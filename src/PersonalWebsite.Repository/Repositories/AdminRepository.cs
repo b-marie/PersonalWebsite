@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebsite.Repository.Models;
+using PersonalWebsite.Repository.Repositories.Interfaces;
 
 namespace PersonalWebsite.Repository.Repositories
 {
-    public class AdminRepository
+    public class AdminRepository : IAdminRepository
     {
         private readonly PersonalWebsiteDbContext _context;
         public AdminRepository(PersonalWebsiteDbContext context)
@@ -84,7 +85,6 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Admin> AddAdmin(Admin admin)
         {
-            admin.CreatedAt = DateTime.UtcNow;
             await _context.Admin.AddAsync(admin);
             await _context.SaveChangesAsync();
             return admin;
@@ -97,17 +97,14 @@ namespace PersonalWebsite.Repository.Repositories
 
         public async Task<Admin> UpdateAdmin(Admin admin)
         {
-            Admin adminToUpdate = await GetAdminById(admin.Id);
-            adminToUpdate.FirstName = admin.FirstName;
-            adminToUpdate.LastName = admin.LastName;
-            adminToUpdate.EmailAddress = admin.EmailAddress;
-            adminToUpdate.LinkedInUrl = admin.LinkedInUrl;
-            adminToUpdate.GitHubUrl = admin.GitHubUrl;
-            adminToUpdate.LastUpdatedAt = DateTime.UtcNow;
-            _context.Admin.Update(adminToUpdate);
+            _context.Admin.Update(admin);
             await _context.SaveChangesAsync();
-            return adminToUpdate;
+            return admin;
+        }
 
+        public async Task<List<Admin>> GetAdmin()
+        {
+            return await _context.Admin.ToListAsync();
         }
     }
 }
